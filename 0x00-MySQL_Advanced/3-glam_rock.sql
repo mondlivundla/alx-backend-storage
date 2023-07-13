@@ -1,5 +1,8 @@
--- Lists all bands with Glam as their main style, ranked by their longevity
+-- Old school band
+-- Lifespan of band and style
 
-SELECT band_name, COALESCE(split, 2020) - formed as lifespan
+SELECT band_name,
+	ifnull(split, YEAR(CURDATE())) - formed as lifespan
 FROM metal_bands
 WHERE style like '%Glam rock%';
+ORDER BY lifespan DESC;
